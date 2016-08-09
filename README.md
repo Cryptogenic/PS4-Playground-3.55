@@ -22,6 +22,9 @@ The project isn't 100% complete, and ROP doesn't seem to work without breaking t
 
 # Special Thanks To
 Fire30 - The porting of the WebKit Exploit to PS4
+
 XYZ - The original exploit for the PSVita
+
 CTurt - JuSt-ROP, the original PS4 Playground, as well as his work with 1.76.
-Red-ExeX32 - Assistance in development
+
+Red-EyeX32 - Assistance in development
