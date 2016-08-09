@@ -1,0 +1,125 @@
+<!-- Hear Me Roar -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>PS4 Playground :: System Informationt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This site's description is not available due to the robots.txt">
+    <meta name="author" content="Specter">
+    <!-- Le styles -->
+    <link rel="stylesheet" type="text/css" href="css/metro-bootstrap.css">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+	<nav class="navbar navbar-inverse" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="./index.html">PS4 Playground</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="./index.html">Welcome</a></li>
+        <li class="active"><a href="#">System Info</a></li>
+        <li><a href="#">File Browser (Coming Soon)</a></li>
+        <li><a href="#">Game Emulator (Coming Soon)</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Latest Compatible Firmware: 3.55</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+    <div class="container">
+
+		<!-- Jumbotron -->
+    <script>
+      var disableFeatures = false;
+      var ua = navigator.userAgent;
+      var playstationOrNot = ua.substring(ua.indexOf("5.0 (") + 5, ua.indexOf(") Apple") - 7);
+
+      // If the system is not a playstation, disable features, display error
+      if(playstationOrNot != "PlayStation")
+      {
+        document.write('<div class="alert alert-danger"><strong>You are not on a PlayStation System!</strong> The "Evaluate" button and all other features have been disabled</div>');
+        disableFeatures = true;
+      }
+
+      // If the system is a playstation, ensure the version is 3.55!
+      else if(ua.substring(ua.indexOf("5.0 (") + 19, ua.indexOf(") Apple")) != "3.55")
+      {
+        document.write('<div class="alert alert-danger"><strong>Your PS4 is not on FW 3.55!</strong> Your current running FW version is ' + ua.substring(ua.indexOf("5.0 (") + 19, ua.indexOf(") Apple")) + ', which is not compatible with PS4 Playground. The "Evaluate" button and all other features have been disabled</div>');
+        disableFeatures = true;
+      }
+
+      // If we've made it this far, the system must be a PS4 and must be version 3.55
+      else
+      {
+        document.write('<div class="alert alert-success"><strong>Congratulations!</strong> We\'ve detected your PlayStation 4 is running FW 3.55, which is compatible with PS4 Playground! Enjoy!</div>');
+      }
+    </script>
+
+    <div class="jumbotron">
+      <h1>PS4 System Information  <a id="runPocLink" href="#" onclick="runPOC(false)"><button id="runPocBtn" type="button" class="btn btn-danger">Evaluate System</button></a></h1>
+      <p class="lead">
+        <h3 id="fwversion"><strong>Firmware Version: </strong>NOT FOUND</h3>
+        <hr />
+        <h3 id="vtableAddress"><strong>VTable Address:</strong> NOT FOUND</h3>
+        <h3 id="webkitAddress"><strong>WebKit Module Base Address:</strong> NOT FOUND</h3>
+        <h3 id="bufferAddress"><strong>Buffer Base Address:</strong> NOT FOUND</h3>
+        <h3 id="uint32Address"><strong>Unsigned Int32 Address:</strong> NOT FOUND</h3>
+        <hr />
+        <h3><strong>Modules</strong></h3>
+        <h4>Coming Soon...</h4>
+      </p>
+      <script>
+        if(playstationOrNot != "PlayStation")
+        {
+          document.getElementById("runPocBtn").disabled = true;
+          document.getElementById("runPocLink").onclick = "";
+        }
+      </script>
+    </div>
+
+	  <hr>
+
+    <!-- Site footer -->
+    <div class="footer">
+      <p>Copyright &copy; PS4 Playground <script>document.write('' + Date().substring(11, 15) + "");</script></p>
+    </div>
+
+    </div> <!-- /container -->
+    <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <!-- Site Scripts -->
+    <script type="text/javascript" src="js/jquery-1.8.0.js"></script>
+	  <script type="text/javascript" src="js/bootstrap.js"></script>
+	  <script type="text/javascript" src="js/jquery.validate.js"></script>
+	  <script type="text/javascript" src="js/jquery.validate.unobtrusive.js"></script>
+	  <script type="text/javascript" src="js/jquery.unobtrusive-ajax.js"></script>
+
+    <!-- Exploitation Scripts -->
+    <script src="scripts/long.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/rop.js"></script>
+    <script src="scripts/gadgets.js"></script>
+    <script src="scripts/exploit.js"></script>
+</html>
