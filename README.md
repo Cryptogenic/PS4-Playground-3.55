@@ -18,7 +18,11 @@ The exploit will not run correctly all of the time. Sometimes it will stick at s
 
 Refreshing the page after a successful attempt or going to another page will crash webkit. Just hit OK and it will resume to the next action you wanted to perform.
 
-The project isn't 100% complete, and ROP doesn't seem to work without breaking the entire script yet. This is being worked on.
+The project isn't 100% complete, however some stuff has been added in the recent 1.1 update. ROP is now functional. Modules are now shown if you choose to do a "Technical + Module Evaluation". If you choose to do a "Basic Evaluation", the PID of WebKit will be shown.
+
+I attempted to make the PID and Modules work together, however a segfault seems to block it every time, so before adding many more features, I plan to implement CTurt's JuSt-ROP and stabalize the exploit more.
+
+You may also get two different PID's in succession when running Basic Eval, this is because WebKit is actually split into two processes. For more information, check out CTurt's article "Introduction to PS4's security, and userland ROP".
 
 # Special Thanks To
 Fire30 - The porting of the WebKit Exploit to PS4
