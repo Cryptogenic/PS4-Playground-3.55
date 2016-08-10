@@ -1,6 +1,8 @@
 # PS4 Playground (FW 3.55)
 PS4 Playground is a project created around the 3.55 Code Execution Userland exploit created by xyz and ported by Fire30. The name and idea is based off CTurt's original "PS4 Playground" developed for FW 1.76. It currently only features a POC test of the exploit and a system information page. The project is still a WIP.
 
+To see updates on what is being worked on for PS4 Playground, I'm going to start posting updates about it on my twitter @SpecterDev.
+
 # The Exploit
 The exploit was originally ported by Fire30, however I cleaned it up a bit and implemented it so everything is shown in the browser. There is no longer a need to run a Python server / run back and forth between your PS4 and your PC to see the information, it's all right on the browser. The exploit is also slightly more stable, as after my edits it seems to work more consistantly in the web implementation and the browser doesn't crash immediately after the exploit is performed successfully.
 
@@ -23,6 +25,8 @@ The project isn't 100% complete, however some stuff has been added in the recent
 I attempted to make the PID and Modules work together, however a segfault seems to block it every time, so before adding many more features, I plan to implement CTurt's JuSt-ROP and stabalize the exploit more.
 
 You may also get two different PID's in succession when running Basic Eval, this is because WebKit is actually split into two processes. For more information, check out CTurt's article "Introduction to PS4's security, and userland ROP".
+
+As pointed out by B7U3 C50SS at PSXHax.com, removing the hashtag from the end of the URL seems to help in regards to crashing and receiving blank pages, this has now been implemented into the official branch.
 
 # Special Thanks To
 Fire30 - The porting of the WebKit Exploit to PS4
