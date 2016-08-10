@@ -10,9 +10,9 @@ function gadget(module,offset)
   this.get_module_base = function()
   {
     if(module == VTABLE)
-      return vtable_ptr;
+      return sce_vtable_address;
     if(module == LIBWEBKIT)
-      return webkit_base_addr;
+      return sce_webkit_address;
     else return 0;
   }
 }
@@ -99,7 +99,7 @@ RopChain.prototype.execute = function()
   {
     rop_buf[0x6 + i] = this.rop_chain[i]
   }
-  
+
   // Make the vtable call
   old_low = cbuf[0x10]
   old_high = cbuf[0x11]

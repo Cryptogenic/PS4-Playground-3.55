@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>PS4 Playground :: System Informationt</title>
+    <title>PS4 Playground :: System Information</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="This site's description is not available due to the robots.txt">
     <meta name="author" content="Specter">
@@ -73,23 +73,29 @@
     </script>
 
     <div class="jumbotron">
-      <h1>PS4 System Information  <a id="runPocLink" href="#" onclick="runPOC(false)"><button id="runPocBtn" type="button" class="btn btn-danger">Evaluate System</button></a></h1>
+      <h1>PS4 System Information  <a id="runPocLink" href="#" onclick="runPOC('get_pid', false)"><button id="runPocBtn" type="button" class="btn btn-warning">Basic Evaluation</button></a>  <a id="runPocLink2" href="#" onclick="runPOC('get_modules', false)"><button id="runPocBtn2" type="button" class="btn btn-info">Technical + Module Evaluation</button></a></h1>
       <p class="lead">
+        <h2><strong>Basic Information<strong></h2>
         <h3 id="fwversion"><strong>Firmware Version: </strong>NOT FOUND</h3>
+        <h3 id="webkitver"><strong>WebKit Version: </strong>NOT FOUND</h3>
+        <h3 id="webkitpid"><strong>WebKit Process ID: </strong>NOT FOUND</h3>
         <hr />
+        <h2><strong>Technical Information</strong></h2>
         <h3 id="vtableAddress"><strong>VTable Address:</strong> NOT FOUND</h3>
         <h3 id="webkitAddress"><strong>WebKit Module Base Address:</strong> NOT FOUND</h3>
         <h3 id="bufferAddress"><strong>Buffer Base Address:</strong> NOT FOUND</h3>
         <h3 id="uint32Address"><strong>Unsigned Int32 Address:</strong> NOT FOUND</h3>
         <hr />
         <h3><strong>Modules</strong></h3>
-        <h4>Coming Soon...</h4>
+        <h4 id="modulesInfo">NOT FOUND</h4>
       </p>
       <script>
         if(playstationOrNot != "PlayStation")
         {
           document.getElementById("runPocBtn").disabled = true;
+          document.getElementById("runPocBtn2").disabled = true;
           document.getElementById("runPocLink").onclick = "";
+          document.getElementById("runPocLink2").onclick = "";
         }
       </script>
     </div>
