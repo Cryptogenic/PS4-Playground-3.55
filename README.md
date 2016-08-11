@@ -30,6 +30,8 @@ Thanks to Xerpi, we now have stack/memory management and are able to do more coo
 
 If you have a seemingly endless string of crashes, try closing and re-opening the web browser/user guide, seems to help in this regard.
 
+Memory dumps are stored on the server in [root]/dumps/memory.bin (because we can't really save it and retrieve it on the PS4). If you use a public hosted server, ensure to save that file on your computer before someone else dumps memory or it will be overwritten!
+
 # Special Thanks To
 Fire30 - The porting of the WebKit Exploit to PS4
 
