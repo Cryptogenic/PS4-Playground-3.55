@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>PS4 Playground :: System Information</title>
+    <title>PS4 Playground :: Memory/Module Dumping</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="This site's description is not available due to the robots.txt">
     <meta name="author" content="Specter">
@@ -34,8 +34,8 @@
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="./index.html">Welcome</a></li>
-        <li class="active"><a href="#">System Info</a></li>
-        <li><a href="./dump.html">Memory/Module Dumper</a></li>
+        <li><a href="./sysinfo.html">System Info</a></li>
+        <li class="active"><a href="#">Memory/Module Dumper</a></li>
         <li><a href="#">File Browser (Coming Soon)</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -54,7 +54,7 @@
       // If the system is not a playstation, disable features, display error
       if(playstationOrNot != "PlayStation")
       {
-        document.write('<div class="alert alert-danger"><strong>You are not on a PlayStation System!</strong> The "Evaluate" button and all other features have been disabled</div>');
+        document.write('<div class="alert alert-danger"><strong>You are not on a PlayStation System!</strong> The "Dump" button and all other features have been disabled</div>');
         disableFeatures = true;
       }
 
@@ -73,29 +73,30 @@
     </script>
 
     <div class="jumbotron">
-      <h1>PS4 System Information  <a id="runPocLink" onclick="runPOC('get_pid', false, true)"><button id="runPocBtn" type="button" class="btn btn-warning">Basic Evaluation</button></a>  <a id="runPocLink2" onclick="runPOC('get_modules_pid', false, true)"><button id="runPocBtn2" type="button" class="btn btn-info">Full Evaluation</button></a></h1>
-      <p class="lead">
-        <h2><strong>Basic Information<strong></h2>
-        <h3 id="fwversion"><strong>Firmware Version: </strong>NOT FOUND</h3>
-        <h3 id="webkitver"><strong>WebKit Version: </strong>NOT FOUND</h3>
-        <h3 id="webkitpid"><strong>WebKit Process ID: </strong>NOT FOUND</h3>
-        <hr />
-        <h2><strong>Technical Information</strong></h2>
-        <h3 id="vtableAddress"><strong>VTable Address:</strong> NOT FOUND</h3>
-        <h3 id="webkitAddress"><strong>WebKit Module Base Address:</strong> NOT FOUND</h3>
-        <h3 id="bufferAddress"><strong>Buffer Base Address:</strong> NOT FOUND</h3>
-        <h3 id="uint32Address"><strong>Unsigned Int32 Address:</strong> NOT FOUND</h3>
-        <hr />
-        <h3><strong>Modules</strong></h3>
-        <h4 id="modulesInfo">NOT FOUND</h4>
-      </p>
+      <h1>PS4 Dumping  <a id="runPocLink" onclick="runPOC('dump_memory', false, false)"><button id="runPocBtn" type="button" class="btn btn-danger">Dump Memory</button></a></h1>
+
+      <h2><strong>Memory Dumping</strong></h2>
+      <table>
+        <tr>
+          <td>
+            Address to Dump: 0x&nbsp;
+            <textarea id="dumpAddr" rows="1" cols="16"></textarea>
+          </td>
+          <td>
+            &nbsp;&nbsp;&nbsp;Size of Dump (max 1024 bytes recommended):&nbsp;
+            <textarea id="dumpSize" rows="1" cols="5"></textarea>
+          </td>
+        </tr>
+      </table>
+
+      <h2><strong>Module Dumping</strong></h2>
+      <h3>Coming soon...</h3>
+
       <script>
         if(playstationOrNot != "PlayStation")
         {
           document.getElementById("runPocBtn").disabled = true;
-          document.getElementById("runPocBtn2").disabled = true;
           document.getElementById("runPocLink").onclick = "";
-          document.getElementById("runPocLink2").onclick = "";
         }
       </script>
     </div>
@@ -119,7 +120,7 @@
 	  <script type="text/javascript" src="js/bootstrap.js"></script>
 	  <script type="text/javascript" src="js/jquery.validate.js"></script>
 	  <script type="text/javascript" src="js/jquery.validate.unobtrusive.js"></script>
-	 
+	  <script type="text/javascript" src="js/jquery.unobtrusive-ajax.js"></script>
 
     <!-- Exploitation Scripts -->
     <script src="scripts/long.js"></script>
