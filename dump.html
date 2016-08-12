@@ -73,7 +73,7 @@
     </script>
 
     <div class="jumbotron">
-      <h1>PS4 Dumping  <a id="runPocLink" onclick="runPOC('dump_memory', false, false)"><button id="runPocBtn" type="button" class="btn btn-danger">Dump Memory</button></a></h1>
+      <h1>PS4 Dumping  <a id="runPocLink" onclick="runPOC('dump_memory', false, false)"><button id="runPocBtn" type="button" class="btn btn-danger">Dump Memory</button></a>&nbsp;&nbsp;<a id="runPocLink2" onclick="runPOC('dump_module', false, false)"><button id="runPocBtn2" type="button" class="btn btn-success">Dump Module</button></a>&nbsp;&nbsp;<a href="stitchWebKit.php"><button type="button" class="btn btn-info">Stitch libSceWebKit2 Chunks</button></a></h1>
 
       <h2><strong>Memory Dumping</strong></h2>
       <table>
@@ -90,13 +90,69 @@
       </table>
 
       <h2><strong>Module Dumping</strong></h2>
-      <h3>Coming soon...</h3>
+      <div id="moduleToDump" class="well">
+        Module Chosen For Dumping: None
+      </div>
+      <table>
+        <tr>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p1.bin'"><button type="button" class="btn btn-success" style="width:100%" style="width:100%">Dump libSceWebKit2.bin (SECTION 1)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceSystemService.bin'"><button type="button" class="btn btn-primary" style="width:100%">Dump libSceSystemService.bin</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceSysmodule.bin'"><button type="button" class="btn btn-warning" style="width:100%">Dump libSceSysmodule.bin</button></a></td>
+        </tr>
+        <tr>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p2.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 2)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceSysCore.bin'"><button type="button" class="btn btn-warning" style="width:100%">Dump libSceSysCore.bin</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceSsl.bin'"><button type="button" class="btn btn-danger" style="width:100%">Dump libSceSsl.bin</button></a></td>
+        </tr>
+        <tr>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p3.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 3)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceRtc.bin'"><button type="button" class="btn btn-primary" style="width:100%">Dump libSceRtc.bin</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceRegMgr.bin'"><button type="button" class="btn btn-warning" style="width:100%">Dump libSceRegMgr.bin</button></a></td>
+        </tr>
+        <tr>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p4.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 4)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libScePad.bin'"><button type="button" class="btn btn-warning" style="width:100%">Dump libScePad.bin</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceOrbisCompat.bin'"><button type="button" class="btn btn-danger" style="width:100%">Dump libSceOrbisCompat.bin</button></a></td>
+        </tr>
+        <tr>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p5.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 5)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceNetCtl.bin'"><button type="button" class="btn btn-danger" style="width:100%">Dump libSceNetCtl.bin</button></a></td>
+          <td><a onclick=""><button type="button" class="btn btn-primary" style="width:100%" disabled>Dump libSceNet.bin</button></a></td>
+        </tr>
+        <tr>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p6.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 6)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceMbus.bin'"><button type="button" class="btn btn-primary" style="width:100%">Dump libSceMbus.bin</button></a></td>
+          <td><a onclick=""><button type="button" class="btn btn-warning" style="width:100%" disabled>Dump libSceLibcInternal.bin</button></a></td>
+        </tr>
+        <tr>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p7.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 7)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p8.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 8)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p9.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 9)</button></a></td>
+        </tr>
+        <tr>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p10.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 10)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p11.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 11)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p12.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 12)</button></a></td>
+        </tr>
+        <tr>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p13.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 13)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p14.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 14)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p15.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libScetyWebKit2.bin (SECTION 15)</button></a></td>
+        </tr>
+        <tr>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p16.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 16)</button></a></td>
+          <td><a onclick="document.getElementById('moduleToDump').innerHTML = 'Module Chosen For Dumping: libSceWebKit2_p17.bin'"><button type="button" class="btn btn-success" style="width:100%">Dump libSceWebKit2.bin (SECTION 17)</button></a></td>
+        </tr>
+
+      </table>
 
       <script>
         if(playstationOrNot != "PlayStation")
         {
           document.getElementById("runPocBtn").disabled = true;
+          document.getElementById("runPocBtn2").disabled = true;
           document.getElementById("runPocLink").onclick = "";
+          document.getElementById("runPocLink2").onclick = "";
         }
       </script>
     </div>
@@ -120,7 +176,6 @@
 	  <script type="text/javascript" src="js/bootstrap.js"></script>
 	  <script type="text/javascript" src="js/jquery.validate.js"></script>
 	  <script type="text/javascript" src="js/jquery.validate.unobtrusive.js"></script>
-	  <script type="text/javascript" src="js/jquery.unobtrusive-ajax.js"></script>
 
     <!-- Exploitation Scripts -->
     <script src="scripts/long.js"></script>
