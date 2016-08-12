@@ -20,25 +20,33 @@ The exploit will not run correctly all of the time. Sometimes it will stick at s
 
 Refreshing the page after a successful attempt or going to another page will crash webkit. Just hit OK and it will resume to the next action you wanted to perform.
 
-The project isn't 100% complete, however more things have been added in the 1.2 update. Memory dumping is now possible to file, and things have been set in place for dumping modules in the near future.
+The project isn't 100% complete, however more things have been added in the 1.3 update. Modules can now be dumped from memory, however currently only modules loaded by WebKit can be dumped.
 
-"Technical + Module Evaluation" has now been changed to "Full Evaluation" as it can now fetch the PID as well as the module list.
+The sizes of dumps may be small for some modules, but they should include most of everything you would need anyway.
 
-You may also get two different PID's in succession when running Basic Eval/Full Eval, this is because WebKit is actually split into two processes. For more information, check out CTurt's article "Introduction to PS4's security, and userland ROP".
+Because of how large the libSceWebKit2.sprx module is, it must be dumped in 17 parts. Once you have all 17 parts (check filesystem on server first), you can click the "Stitch WebKit" button which will merge them all into one dump. I tried to make it dump the module all at once, but it absolutely wrecked my PS4's ram and gave a system error after a 5 minute long freeze.
 
-Thanks to Xerpi, we now have stack/memory management and are able to do more cool stuff!
+If you try to stitch WebKit without all 17 parts, the PHP page you are directed to will probably display errors and you may have to close the browser to get out. I plan to fix this in a future commit with proper error handling/
+
+Dumps are named .bin rather than .sprx to distinguish that they are dumped from memory and not by file, however they will still load fine in IDA for example.
 
 If you have a seemingly endless string of crashes, try closing and re-opening the web browser/user guide, seems to help in this regard.
 
-Memory dumps are stored on the server in [root]/dumps/memory.bin (because we can't really save it and retrieve it on the PS4). If you use a public hosted server, ensure to save that file on your computer before someone else dumps memory or it will be overwritten!
+Big thanks to XorLoser, Maxton, and Fire30 for assistance with dumping the modules.
+
+Thanks to Xerpi, we now have stack/memory management and are able to do more cool stuff!
 
 # Special Thanks To
-Fire30 - The porting of the WebKit Exploit to PS4
+Fire30 - The porting of the WebKit Exploit to PS4, as well as assistance when I needed it
 
 Xerpi - Functions in his POC edit that I ported over (these functions made things way easier and more efficient)
 
 XYZ - The original exploit for the PSVita
 
 CTurt - JuSt-ROP, the original PS4 Playground, as well as his work with 1.76.
+
+XorLoser - File sizes and headers for the module dumps
+
+Maxton - Assistance in understanding the exploit better and module dumping
 
 Red-EyeX32 - Assistance in development
