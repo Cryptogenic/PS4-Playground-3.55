@@ -20,16 +20,22 @@ The exploit will not run correctly all of the time. Sometimes it will stick at s
 
 Refreshing the page after a successful attempt or going to another page will crash webkit. Just hit OK and it will resume to the next action you wanted to perform.
 
-The project isn't 100% complete, however some stuff has been added in the recent 1.1 update. ROP is now functional. Modules are now shown if you choose to do a "Technical + Module Evaluation". If you choose to do a "Basic Evaluation", the PID of WebKit will be shown.
+The project isn't 100% complete, however more things have been added in the 1.2 update. Memory dumping is now possible to file, and things have been set in place for dumping modules in the near future.
 
-I attempted to make the PID and Modules work together, however a segfault seems to block it every time, so before adding many more features, I plan to implement CTurt's JuSt-ROP and stabalize the exploit more.
+"Technical + Module Evaluation" has now been changed to "Full Evaluation" as it can now fetch the PID as well as the module list.
 
-You may also get two different PID's in succession when running Basic Eval, this is because WebKit is actually split into two processes. For more information, check out CTurt's article "Introduction to PS4's security, and userland ROP".
+You may also get two different PID's in succession when running Basic Eval/Full Eval, this is because WebKit is actually split into two processes. For more information, check out CTurt's article "Introduction to PS4's security, and userland ROP".
 
-As pointed out by B7U3 C50SS at PSXHax.com, removing the hashtag from the end of the URL seems to help in regards to crashing and receiving blank pages, this has now been implemented into the official branch.
+Thanks to Xerpi, we now have stack/memory management and are able to do more cool stuff!
+
+If you have a seemingly endless string of crashes, try closing and re-opening the web browser/user guide, seems to help in this regard.
+
+Memory dumps are stored on the server in [root]/dumps/memory.bin (because we can't really save it and retrieve it on the PS4). If you use a public hosted server, ensure to save that file on your computer before someone else dumps memory or it will be overwritten!
 
 # Special Thanks To
 Fire30 - The porting of the WebKit Exploit to PS4
+
+Xerpi - Functions in his POC edit that I ported over (these functions made things way easier and more efficient)
 
 XYZ - The original exploit for the PSVita
 
