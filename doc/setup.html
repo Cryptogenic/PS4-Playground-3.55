@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>PS4 Playground :: Documentation [SETUP]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This site's description is not available due to the robots.txt">
+    <meta name="author" content="Specter">
+    <!-- Le styles -->
+    <link rel="stylesheet" type="text/css" href="../css/metro-bootstrap.css">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+	<nav class="navbar navbar-default" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">PS4 Playground Documentation</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Index</a></li>
+        <li class="active"><a href="#">Setting Up</a></li>
+        <li><a href="notes.html">Notes (Syscalls, Modules, Etc.)</a></li>
+        <li><a href="changelog.html">Change Log</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="https://twitter.com/SpecterDev" target="_blank">@SpecterDev Twitter</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+    <div class="container">
+
+		<!-- Jumbotron -->
+		<div class="jumbotron">
+      <h1>Setting Up PS4 Playground</h1>
+      <h2><div style="color: #3189CA;"><b>Introduction</b></div></h2>
+      <p class="lead">
+        Seeing as many people aren't sure how to setup PS4 Playground for their own server / localhosting, I decided to write this article. Now there have been sites setup to host this, <a href="https://cryptogenic.github.io/PS4-Playground-3.55/">including mine</a>, however to use these is pretty simple. To use these links, you can simply go into your PS4's web browser and go to the address, the same goes for localhosting via xampp or something similar. This guide will cover how to setup a basic localhost and how to get DNS spoofing working so you can get to PS4 Playground straight through the User Guide in the PS4 Settings page.
+      </p>
+      <hr />
+      <h3>Quick Links</h3>
+      <ul style="list-style: none;">
+        <li><a href="#xampp">Setting up an xampp server</a></li>
+        <li><a href="#ipadd">Setting your computer's IP address</a></li>
+        <li><a href="#spoof">Spoofing DNS</a></li>
+      </ul>
+      <hr /><br />
+      <a name="xampp"></a>
+      <h2><div style="color: #3189CA;"><b>Setting up an xampp server</b></div></h2>
+      <p>
+        To setup a local server, the easiest solution is probably Xampp. Download it from the site linked, and ensure Apache as well as PHP are checked when selecting components. You should also ensure it is installed at <i>C:/xampp/</i>, as the path should not have any spaces in it. Now when you open xampp, you should see a window like this appear:
+        <br /><br />
+        <center><img src="http://i.imgur.com/1w3CpdJ.png" /></center>
+      </p>
+      <p>
+        Now as you can see, my version is pretty old (v3.2.1), however the interface should be fairly similar. Now all you need to run the Apache module is click the "Start" button under actions. If you have skype open, Apache will not start, so close Skype before starting Apache. If it started successfully, the Apache module should be highlighted green.
+      </p>
+      <p>
+        Now we need to put PS4 Playground's files on our localhost server. The "htdocs" folder in the xampp root is the public directory for your localhost server. Now there's three ways we can place our files to work on the PS4. We can;
+        <br /><br />
+        1) Put the files in /document/en/ps4 (as I have because I'm lazy)<br />
+        2) Put the files in the root of htdocs and setup a redirect in /document/en/ps4<br />
+        3) Put the files in the root of htdocs and setup a redirect via .htaccess.<br />
+      </p>
+      <br />
+      <h3>Method One: Putting Files in /document/en/ps4</h3>
+      <p>This method is the easiest. All you need to do is go to C:/xampp/htdocs and create the /document/en/ps4 directories and put PS4 Playground's files in there.</p>
+      <center><img src="http://i.imgur.com/CymGTHW.png" /></center>
+      <h3>Method Two: Putting Files in / and Setting Up a Redirect in /document/en/ps4</h3>
+      <p>
+        This method is not much harder than the first, just an extra step. We put our files in the root of htdocs, and while we still make the /document/en/ps4 directory, instead of putting PS4 Playground's files there we just put a PHP (or HTML if you want to use JavaScript) file there. If you wish to put a PHP file, you can use the following code:
+      </p>
+      <div class="well">
+        &lt;?php<br />
+        &nbsp;&nbsp;&nbsp;// You can set the location to go to / instead, however the header url SHOULD be absolute<br />
+        &nbsp;&nbsp;&nbsp;header("Location: http://localhost/");<br />
+        &nbsp;&nbsp;&nbsp;die();<br />
+        ?&gt;
+      </div>
+      <p>If you wish to use a JavaScript redirect instead (for some reason), you may use the following code:</p>
+      <div class="well">
+        <!-- We have to use character references so the HTML doesn't actually get parsed in our page -->
+        &lt;script&gt;<br />
+        &nbsp;&nbsp;&nbsp;window.location.replace("http://localhost/");<br />
+        &lt;/script&gt;
+      </div>
+      <h3>Method Three: Putting Files in / and Setting Up a Redirect in .htaccess</h3>
+      <p>
+        This one is not much more difficult than method one or two, but it uses .htaccess which may same weird to some. .htaccess is a file parsed by Apache for rewrite rules, similar to blocks in Nginx. Again we put our files in the htdocs root folder, however we do not need to create /document/en/ps4 for this method. All we need to do for this is create a file with the name ".htaccess" (no file extension or quotes) in the main root directory as well, and put the following code in:
+      </p>
+      <div class="well">
+        RedirectMatch 301 /document/en/ps4(.*) $1
+      </div>
+      <hr /><br />
+      <a name="ipadd"></a>
+      <h2><div style="color: #3189CA;"><b>Getting your computer's IP address</b></div></h2>
+      <p>
+        We will need the computer's IP address that is running xampp, even if you're not spoofing DNS and just using the web browser, as you will need it for the URL. For windows machines, just open the command prompt (cmd.exe) and type "ipconfig". For mac users, open the terminal and type "ifconfig". Scroll until you see "Subnet Mask" (it should be equal to 255.255.255.0). Above this you should see IPv4 Address (this is your LAN address, not your public IP address). This is what you need.
+      </p>
+      <p>
+        Now if you're going to use the browser, just open the browser and type the IPv4 address you just found into the web browser + '/document/en/ps4' (only if you used method one, if you used method two or three above, you can just type the IPv4 address).
+      </p>
+      <hr /><br />
+      <a name="spoof"></a>
+      <h2><div style="color: #3189CA;"><b>Spoofing DNS</b></div></h2>
+      <p>
+        <b>Note: </b>If you do not wish to access PS4 Playground through "User Guide" in settings, you can skip this section.
+      </p>
+      <p>
+        Now I like to use the User Guide to access PS4 Playground, partially because it acts as a shortcut, and also because I don't have to sign into PSN to use it. Doing so requires DNS spoofing. What we're basically doing is tricking the PS4 into thinking it's going to manuals.playstation.net/document/en/ps4, when it's actually going to our localhost server with PS4 Playground on it.
+      </p>
+      <p>
+        You will need to install <a href="https://www.python.org/downloads/windows/">Python for windows</a>. Install python 2.7.12, as Python 3.5.2 is different in terms of syntax and will most likely cause fakedns.py to run into errors. Once Python is installed, all you need to do is open command prompt (cmd.exe) or terminal on mac, and run fakedns.py with "python fakedns.py" (not including quotes). When you do so, you should see the following:
+        <center><img src="http://i.imgur.com/neDKJVk.png" /></center>
+      </p>
+      <hr /><br />
+      <h2><div style="color: #3189CA;"><b>That's It!</b></div></h2>
+      <p>We now have access to the PS4 Playground on our system. Happy exploring!</p>
+    </div>
+
+	  <hr>
+
+    <!-- Site footer -->
+    <div class="footer">
+      <p>Copyright &copy; PS4 Playground <script>document.write('' + Date().substring(11, 15) + "");</script></p>
+    </div>
+
+    </div> <!-- /container -->
+    <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-36060270-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+  </body>
+</html>
